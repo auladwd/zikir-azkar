@@ -7,6 +7,8 @@ const CACHE_ASSETS = [
   './app.js',
   './data.js',
   './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
   'https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Hind+Siliguri:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&display=swap'
 ];
 
