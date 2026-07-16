@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="bn" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#1a0a2e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="সকাল-সন্ধ্যা ও পাঁচ ওয়াক্ত নামাজের পরের জিকির ও দোয়া" />
+  <title>আযকার - জিকির ও দোয়া</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Hind+Siliguri:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash-screen" class="splash-screen">
+    <div class="splash-content">
+      <div class="splash-icon">☪</div>
+      <h1 class="splash-title">আযকার</h1>
+      <p class="splash-subtitle">জিকির ও দোয়া</p>
+      <div class="splash-loader">
+        <div class="loader-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="app hidden">
+
+    <!-- Header -->
+    <header class="app-header" id="app-header">
+      <div class="header-left">
+        <button class="icon-btn" id="menu-btn" aria-label="মেনু">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="header-center">
+        <span class="header-title" id="header-title">আযকার</span>
+      </div>
+      <div class="header-right">
+        <button class="icon-btn" id="search-btn" aria-label="অনুসন্ধান">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+        <button class="icon-btn" id="settings-btn" aria-label="সেটিংস">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Sidebar / Drawer -->
+    <div class="sidebar-overlay hidden" id="sidebar-overlay"></div>
+    <nav class="sidebar hidden" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">☪</div>
+        <div class="sidebar-user-info">
+          <h3>আযকার</h3>
+          <p>জিকির ও দোয়া</p>
+        </div>
+        <button class="icon-btn sidebar-close" id="sidebar-close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#" data-page="home" class="sidebar-link active">🏠 হোম</a></li>
+        <li><a href="#" data-page="morning" class="sidebar-link">🌅 সকালের আযকার</a></li>
+        <li><a href="#" data-page="evening" class="sidebar-link">🌙 সন্ধ্যার আযকার</a></li>
+        <li class="sidebar-divider"></li>
+        <li class="sidebar-section-title">নামাজের পরের দোয়া</li>
+        <li><a href="#" data-page="fajr" class="sidebar-link">🌄 ফজরের পর</a></li>
+        <li><a href="#" data-page="dhuhr" class="sidebar-link">☀️ যোহরের পর</a></li>
+        <li><a href="#" data-page="asr" class="sidebar-link">🌤️ আসরের পর</a></li>
+        <li><a href="#" data-page="maghrib" class="sidebar-link">🌇 মাগরিবের পর</a></li>
+        <li><a href="#" data-page="isha" class="sidebar-link">🌃 ইশার পর</a></li>
+        <li class="sidebar-divider"></li>
+        <li><a href="#" data-page="tasbih" class="sidebar-link">📿 তাসবিহ কাউন্টার</a></li>
+        <li><a href="#" data-page="favorites" class="sidebar-link">❤️ প্রিয় দোয়া</a></li>
+        <li><a href="#" data-page="history" class="sidebar-link">📊 ইতিহাস</a></li>
+        <li class="sidebar-divider"></li>
+        <li><a href="#" data-page="settings" class="sidebar-link">⚙️ সেটিংস</a></li>
+      </ul>
+    </nav>
+
+    <!-- Search Modal -->
+    <div class="modal-overlay hidden" id="search-modal">
+      <div class="search-modal-content">
+        <div class="search-header">
+          <input type="text" id="search-input" placeholder="দোয়া অনুসন্ধান করুন..." class="search-input" />
+          <button class="icon-btn" id="search-close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <div class="search-results" id="search-results"></div>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay hidden" id="settings-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>⚙️ সেটিংস</h2>
+          <button class="icon-btn" id="settings-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="settings-section">
+            <h3>ডিসপ্লে</h3>
+            <div class="setting-item">
+              <label>আরবি ফন্ট সাইজ</label>
+              <input type="range" id="arabic-font-size" min="18" max="40" value="26" />
+              <span id="arabic-font-size-val">26px</span>
+            </div>
+            <div class="setting-item">
+              <label>বাংলা ফন্ট সাইজ</label>
+              <input type="range" id="bangla-font-size" min="12" max="24" value="15" />
+              <span id="bangla-font-size-val">15px</span>
+            </div>
+            <div class="setting-item">
+              <label>থিম</label>
+              <div class="theme-options">
+                <button class="theme-btn active" data-theme="dark" id="theme-dark">🌙 ডার্ক</button>
+                <button class="theme-btn" data-theme="light" id="theme-light">☀️ লাইট</button>
+                <button class="theme-btn" data-theme="nature" id="theme-nature">🌿 নেচার</button>
+              </div>
+            </div>
+          </div>
+          <div class="settings-section">
+            <h3>নিজস্ব পছন্দ</h3>
+            <div class="setting-item">
+              <label>আরবি টেক্সট দেখান</label>
+              <label class="toggle-switch">
+                <input type="checkbox" id="show-arabic" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <label>উচ্চারণ দেখান</label>
+              <label class="toggle-switch">
+                <input type="checkbox" id="show-transliteration" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <label>অনুবাদ দেখান</label>
+              <label class="toggle-switch">
+                <input type="checkbox" id="show-translation" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <label>ফজিলত দেখান</label>
+              <label class="toggle-switch">
+                <input type="checkbox" id="show-benefit" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="settings-section">
+            <h3>ডেটা</h3>
+            <button class="danger-btn" id="clear-history-btn">🗑️ ইতিহাস মুছুন</button>
+            <button class="danger-btn" id="reset-all-btn">🔄 সব রিসেট করুন</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <main class="main-content" id="main-content">
+
+      <!-- HOME PAGE -->
+      <div class="page active" id="page-home">
+        <div class="home-top">
+          <div class="prayer-time-banner" id="prayer-time-banner">
+            <div class="prayer-time-content">
+              <div class="current-time" id="current-time">--:--</div>
+              <div class="current-date" id="current-date">--</div>
+              <div class="next-prayer" id="next-prayer">পরবর্তী নামাজ লোড হচ্ছে...</div>
+            </div>
+            <div class="prayer-decoration">بِسْمِ اللّٰهِ</div>
+          </div>
+          <div class="bismillah-section">
+            <div class="bismillah-arabic">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+            <div class="bismillah-bangla">পরম করুণাময় অসীম দয়ালু আল্লাহর নামে</div>
+          </div>
+        </div>
+
+        <div class="home-grid">
+          <div class="home-card morning-card" data-page="morning">
+            <div class="card-icon">🌅</div>
+            <div class="card-content">
+              <h3>সকালের আযকার</h3>
+              <p>ফজর থেকে সূর্যোদয়</p>
+            </div>
+            <div class="card-progress">
+              <div class="progress-ring-container">
+                <svg class="progress-ring" viewBox="0 0 36 36">
+                  <circle class="progress-ring-bg" cx="18" cy="18" r="15.9"/>
+                  <circle class="progress-ring-fill morning-ring" cx="18" cy="18" r="15.9" id="morning-progress-ring"/>
+                </svg>
+                <span class="progress-text" id="morning-progress-text">0%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="home-card evening-card" data-page="evening">
+            <div class="card-icon">🌙</div>
+            <div class="card-content">
+              <h3>সন্ধ্যার আযকার</h3>
+              <p>আসর থেকে সূর্যাস্ত</p>
+            </div>
+            <div class="card-progress">
+              <div class="progress-ring-container">
+                <svg class="progress-ring" viewBox="0 0 36 36">
+                  <circle class="progress-ring-bg" cx="18" cy="18" r="15.9"/>
+                  <circle class="progress-ring-fill evening-ring" cx="18" cy="18" r="15.9" id="evening-progress-ring"/>
+                </svg>
+                <span class="progress-text" id="evening-progress-text">0%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title">নামাজের পরের দোয়া</h2>
+        <div class="prayer-list">
+          <div class="prayer-item" data-page="fajr">
+            <div class="prayer-item-icon fajr-icon">🌄</div>
+            <div class="prayer-item-info">
+              <h4>ফজর</h4>
+              <p>ফজরের নামাজের পর</p>
+            </div>
+            <div class="prayer-item-progress">
+              <div class="mini-progress" id="fajr-mini-progress">
+                <div class="mini-fill" id="fajr-mini-fill" style="width:0%"></div>
+              </div>
+              <span class="mini-percent" id="fajr-percent">0%</span>
+            </div>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+          <div class="prayer-item" data-page="dhuhr">
+            <div class="prayer-item-icon dhuhr-icon">☀️</div>
+            <div class="prayer-item-info">
+              <h4>যোহর</h4>
+              <p>যোহরের নামাজের পর</p>
+            </div>
+            <div class="prayer-item-progress">
+              <div class="mini-progress" id="dhuhr-mini-progress">
+                <div class="mini-fill" id="dhuhr-mini-fill" style="width:0%"></div>
+              </div>
+              <span class="mini-percent" id="dhuhr-percent">0%</span>
+            </div>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+          <div class="prayer-item" data-page="asr">
+            <div class="prayer-item-icon asr-icon">🌤️</div>
+            <div class="prayer-item-info">
+              <h4>আসর</h4>
+              <p>আসরের নামাজের পর</p>
+            </div>
+            <div class="prayer-item-progress">
+              <div class="mini-progress" id="asr-mini-progress">
+                <div class="mini-fill" id="asr-mini-fill" style="width:0%"></div>
+              </div>
+              <span class="mini-percent" id="asr-percent">0%</span>
+            </div>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+          <div class="prayer-item" data-page="maghrib">
+            <div class="prayer-item-icon maghrib-icon">🌇</div>
+            <div class="prayer-item-info">
+              <h4>মাগরিব</h4>
+              <p>মাগরিবের নামাজের পর</p>
+            </div>
+            <div class="prayer-item-progress">
+              <div class="mini-progress" id="maghrib-mini-progress">
+                <div class="mini-fill" id="maghrib-mini-fill" style="width:0%"></div>
+              </div>
+              <span class="mini-percent" id="maghrib-percent">0%</span>
+            </div>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+          <div class="prayer-item" data-page="isha">
+            <div class="prayer-item-icon isha-icon">🌃</div>
+            <div class="prayer-item-info">
+              <h4>ইশা</h4>
+              <p>ইশার নামাজের পর</p>
+            </div>
+            <div class="prayer-item-progress">
+              <div class="mini-progress" id="isha-mini-progress">
+                <div class="mini-fill" id="isha-mini-fill" style="width:0%"></div>
+              </div>
+              <span class="mini-percent" id="isha-percent">0%</span>
+            </div>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="quick-tools">
+          <h2 class="section-title">দ্রুত সরঞ্জাম</h2>
+          <div class="tools-row">
+            <div class="tool-card" data-page="tasbih">
+              <div class="tool-icon">📿</div>
+              <span>তাসবিহ</span>
+            </div>
+            <div class="tool-card" data-page="favorites">
+              <div class="tool-icon">❤️</div>
+              <span>প্রিয়</span>
+            </div>
+            <div class="tool-card" data-page="history">
+              <div class="tool-icon">📊</div>
+              <span>ইতিহাস</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="daily-quote">
+          <div class="quote-label">আজকের হাদিস</div>
+          <div class="quote-arabic" id="daily-hadith-arabic">مَنْ قَالَ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ</div>
+          <div class="quote-text" id="daily-hadith-text">যে ব্যক্তি প্রতিদিন ১০০ বার বলে - "লা ইলাহা ইল্লাল্লাহু ওয়াহদাহু লা শারিকা লাহু" - সে ১০টি দাস মুক্ত করার সমান সওয়াব পাবে।</div>
+          <div class="quote-source">— সহিহ বুখারি</div>
+        </div>
+      </div>
+
+      <!-- DHIKR PAGE (used for morning, evening, and all prayers) -->
+      <div class="page hidden" id="page-dhikr">
+        <div class="dhikr-header" id="dhikr-page-header">
+          <button class="back-btn" id="back-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <div class="dhikr-header-info">
+            <h2 id="dhikr-page-title">সকালের আযকার</h2>
+            <p id="dhikr-page-subtitle">সকালের জিকির ও দোয়া</p>
+          </div>
+          <button class="icon-btn" id="reset-page-btn" title="রিসেট">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="dhikr-progress-bar-wrap">
+          <div class="dhikr-overall-progress">
+            <div class="dhikr-fill" id="dhikr-fill"></div>
+          </div>
+          <span class="dhikr-progress-label" id="dhikr-progress-label">০/০ সম্পন্ন</span>
+        </div>
+
+        <div class="dhikr-list" id="dhikr-list"></div>
+
+        <div class="dhikr-complete-banner hidden" id="dhikr-complete-banner">
+          <div class="complete-icon">🎉</div>
+          <h3>আলহামদুলিল্লাহ!</h3>
+          <p>সকল আযকার সম্পন্ন হয়েছে</p>
+          <button class="primary-btn" id="restart-btn">পুনরায় শুরু করুন</button>
+        </div>
+      </div>
+
+      <!-- TASBIH PAGE -->
+      <div class="page hidden" id="page-tasbih">
+        <div class="tasbih-container">
+          <div class="tasbih-header">
+            <button class="back-btn" id="tasbih-back-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+            <h2>📿 ডিজিটাল তাসবিহ</h2>
+          </div>
+
+          <div class="tasbih-selector">
+            <select id="tasbih-dhikr-select" class="tasbih-select">
+              <option value="subhanallah">সুবহানাল্লাহ (৩৩ বার)</option>
+              <option value="alhamdulillah">আলহামদুলিল্লাহ (৩৩ বার)</option>
+              <option value="allahuakbar">আল্লাহু আকবার (৩৪ বার)</option>
+              <option value="lailaha">লা ইলাহা ইল্লাল্লাহ (১০০ বার)</option>
+              <option value="astaghfirullah">আস্তাগফিরুল্লাহ (১০০ বার)</option>
+              <option value="custom">কাস্টম জিকির</option>
+            </select>
+          </div>
+
+          <div class="tasbih-arabic-display" id="tasbih-arabic-display">
+            سُبْحَانَ اللّٰهِ
+          </div>
+          <div class="tasbih-bangla-display" id="tasbih-bangla-display">সুবহানাল্লাহ</div>
+
+          <div class="tasbih-counter-display">
+            <div class="counter-circle" id="counter-circle">
+              <svg class="counter-svg" viewBox="0 0 200 200">
+                <circle class="counter-bg-circle" cx="100" cy="100" r="85"/>
+                <circle class="counter-progress-circle" cx="100" cy="100" r="85" id="counter-svg-circle"/>
+              </svg>
+              <div class="counter-number" id="counter-number">0</div>
+              <div class="counter-target" id="counter-target">/ 33</div>
+            </div>
+          </div>
+
+          <div class="tasbih-controls">
+            <button class="tasbih-btn tasbih-reset" id="tasbih-reset">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+              </svg>
+            </button>
+            <button class="tasbih-btn tasbih-main" id="tasbih-tap">
+              <div class="tasbih-tap-ripple"></div>
+              <span>টাপ করুন</span>
+            </button>
+            <button class="tasbih-btn tasbih-minus" id="tasbih-minus">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="tasbih-stats">
+            <div class="stat-box">
+              <div class="stat-num" id="tasbih-total-rounds">0</div>
+              <div class="stat-label">রাউন্ড</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" id="tasbih-total-count">0</div>
+              <div class="stat-label">মোট</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" id="tasbih-today">0</div>
+              <div class="stat-label">আজ</div>
+            </div>
+          </div>
+
+          <div class="custom-dhikr-section hidden" id="custom-dhikr-section">
+            <input type="text" id="custom-arabic" placeholder="আরবি টেক্সট লিখুন" class="custom-input" />
+            <input type="text" id="custom-bangla" placeholder="বাংলা অনুবাদ লিখুন" class="custom-input" />
+            <input type="number" id="custom-target" placeholder="টার্গেট সংখ্যা (যেমন: ৩৩)" class="custom-input" min="1" max="1000" value="33" />
+            <button class="primary-btn" id="save-custom-dhikr">সংরক্ষণ করুন</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAVORITES PAGE -->
+      <div class="page hidden" id="page-favorites">
+        <div class="page-header-simple">
+          <button class="back-btn" id="fav-back-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <h2>❤️ প্রিয় দোয়া</h2>
+        </div>
+        <div class="favorites-list" id="favorites-list">
+          <div class="empty-state">
+            <div class="empty-icon">💔</div>
+            <h3>কোনো প্রিয় দোয়া নেই</h3>
+            <p>দোয়া পড়ার সময় হৃদয় আইকনে ট্যাপ করে প্রিয় তালিকায় যোগ করুন</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTORY PAGE -->
+      <div class="page hidden" id="page-history">
+        <div class="page-header-simple">
+          <button class="back-btn" id="history-back-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <h2>📊 আমলের ইতিহাস</h2>
+        </div>
+        <div class="history-summary" id="history-summary"></div>
+        <div class="history-chart-section">
+          <h3>সাপ্তাহিক পরিসংখ্যান</h3>
+          <div class="bar-chart" id="bar-chart"></div>
+        </div>
+        <div class="history-list" id="history-list">
+          <div class="empty-state">
+            <div class="empty-icon">📊</div>
+            <h3>কোনো ইতিহাস নেই</h3>
+            <p>আযকার পড়া শুরু করুন, ইতিহাস এখানে সংরক্ষিত হবে</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="nav-btn active" data-page="home" id="nav-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>হোম</span>
+      </button>
+      <button class="nav-btn" data-page="morning" id="nav-morning">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <span>সকাল</span>
+      </button>
+      <button class="nav-btn" data-page="tasbih" id="nav-tasbih">
+        <div class="tasbih-nav-icon">📿</div>
+        <span>তাসবিহ</span>
+      </button>
+      <button class="nav-btn" data-page="evening" id="nav-evening">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <span>সন্ধ্যা</span>
+      </button>
+      <button class="nav-btn" data-page="favorites" id="nav-favorites">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span>প্রিয়</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
+</body>
+</html>

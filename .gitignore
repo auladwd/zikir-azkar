@@ -1,0 +1,14 @@
+# Node modules (যদি কখনো ব্যবহার হয়)
+node_modules/
+
+# OS ফাইল
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor ফাইল
+.vscode/
+.idea/
+
+# Logs
+*.log
